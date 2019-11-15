@@ -33,4 +33,12 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name=="Main Camera")
+        {
+            Debug.Log("touché");
+        }
+    }
 }

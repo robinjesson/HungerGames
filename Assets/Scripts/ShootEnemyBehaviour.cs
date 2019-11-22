@@ -20,8 +20,8 @@ public class ShootEnemyBehaviour : MonoBehaviour
     {
         if (DateTime.Now >= lastOccurence.AddSeconds(3))
         {
+            var bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
             lastOccurence = DateTime.Now;
-            Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
         }
     }
 }

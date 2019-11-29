@@ -16,7 +16,7 @@ public class BulletEnemyBehaviour : MonoBehaviour
     void Start()
     {
         Vector3 target = Camera.main.transform.position;
-        movementVector = (target - transform.position).normalized * 1f;
+        movementVector = (target - transform.position).normalized;
         creationTime = DateTime.Now;
         
     }

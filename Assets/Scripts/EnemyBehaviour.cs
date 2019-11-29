@@ -5,22 +5,46 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    private DateTime lastOccurence;
+    private DateTime lastShoot;
+    private double intervalShoot;
+    private DateTime lastMove;
+    private double intervalMove;
 
     public GameObject bulletPrefab;
-    public double intervalShoot=3;
     
     void Start()
     {
-        lastOccurence = DateTime.Now;
+        this.intervalShoot = UnityEngine.Random.Range(3, 10);
+        this.intervalMove = UnityEngine.Random.Range(3, 10);
+        this.lastShoot = DateTime.Now;
+        this.lastMove = DateTime.Now;
     }
     
     void Update()
     {
-        if (DateTime.Now >= lastOccurence.AddSeconds(intervalShoot))
+        this.Shoot();
+        this.MovesToCam();
+    }
+
+    void Shoot()
+    {
+        if (DateTime.Now >= lastShoot.AddSeconds(this.intervalShoot))
         {
             var bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
-            lastOccurence = DateTime.Now;
+            this.lastShoot = DateTime.Now;
         }
     }
+
+    void MovesToCam()
+    {
+        if(DateTime.Now >= lastMove.AddSeconds(this.intervalMove))
+        {
+            Vector3 camPos = Camera.main.transform.position;
+            Vector3 movementVector = (camPos - this.transform.position).normalized;
+            this.transform.position += movementVector;
+            this.lastMove = DateTime.Now;
+        }
+    }
+
+
 }

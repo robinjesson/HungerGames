@@ -385,7 +385,7 @@ MonoBehaviour:
     type: 3}
   enemyPrefab: {fileID: 835203541262450012, guid: c7ac7d6ff54104c45add8c5944c31aad,
     type: 3}
-  nbEnemies: 3
+  nbEnemies: 2
   radius: 3
 --- !u!1 &1662869013
 GameObject:

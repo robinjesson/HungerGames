@@ -3,22 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootEnemyBehaviour : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour
 {
     private DateTime lastOccurence;
 
     public GameObject bulletPrefab;
-
-    // Start is called before the first frame update
+    public double intervalShoot=3;
+    
     void Start()
     {
         lastOccurence = DateTime.Now;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (DateTime.Now >= lastOccurence.AddSeconds(3))
+        if (DateTime.Now >= lastOccurence.AddSeconds(intervalShoot))
         {
             var bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
             lastOccurence = DateTime.Now;

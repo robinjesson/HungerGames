@@ -18,12 +18,13 @@ public class BulletEnemyBehaviour : MonoBehaviour
         Vector3 target = Camera.main.transform.position;
         movementVector = (target - transform.position).normalized * 1f;
         creationTime = DateTime.Now;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += movementVector * Time.deltaTime;
+        transform.position += movementVector * Time.deltaTime * speed;
         
         if (DateTime.Now >= creationTime.AddSeconds(20))
         {

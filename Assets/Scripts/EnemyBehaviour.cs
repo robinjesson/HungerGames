@@ -11,6 +11,10 @@ public class EnemyBehaviour : MonoBehaviour
     private double intervalMove;
 
     public GameObject bulletPrefab;
+    public float cubeExplosionSize = 0.1f;
+    public int explosionForce = 120;
+    public int explosionRadius = 10;
+    public float explosionUpward = 10f;
     
     void Start()
     {
@@ -46,5 +50,12 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-
+    public void explodeChild(GameObject firstHit,Collider bullet)
+    {
+        EnemyExplodeBehavior[] cubes = gameObject.GetComponentsInChildren<EnemyExplodeBehavior>();
+        foreach (EnemyExplodeBehavior cube in cubes)
+        {
+            if(firstHit.name != cube.name) cube.explode(bullet);
+        }
+    }
 }

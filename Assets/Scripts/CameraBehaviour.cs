@@ -39,5 +39,15 @@ public class CameraBehaviour : MonoBehaviour
         Instantiate(cameraBulletPrefab, this.transform.position, Quaternion.identity);
     }
 
-    
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(cameraBulletPrefab, this.transform.position, Quaternion.identity);
+        }
+    }
+
+
+
+
 }

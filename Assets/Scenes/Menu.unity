@@ -413,10 +413,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 171313275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d5285241c83cb4babb71ad5626301f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e61023e12bbbce4591c426f7cd50b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultText: Play
+  defaultText: Button
 --- !u!65 &171313279
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -645,6 +645,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093519360254951503, guid: 76c6cdbe510f69145836a62c0b535c39,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8093519361886871162, guid: 76c6cdbe510f69145836a62c0b535c39,
         type: 3}
       propertyPath: m_Name
@@ -709,36 +739,6 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultText
       value: Jouer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8093519360254951503, guid: 76c6cdbe510f69145836a62c0b535c39,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8093519360254951501, guid: 76c6cdbe510f69145836a62c0b535c39,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

@@ -15,6 +15,7 @@ public class ButtonPlayBehaviour : MonoBehaviour, IMixedRealityInputHandler
     {
         this.transform.localScale = new Vector3(this.defaultScale.x, this.defaultScale.y, 0.01f);
         this.tmp.text = "Pressed";
+        Debug.Log("ondown");
     }
 
     public void OnInputUp(InputEventData eventData)
@@ -22,6 +23,7 @@ public class ButtonPlayBehaviour : MonoBehaviour, IMixedRealityInputHandler
         this.transform.localScale = this.defaultScale;
         this.tmp.text = this.defaultText;
         Application.LoadLevel("SampleScene");
+        Debug.Log("onup");
     }
 
     // Start is called before the first frame update

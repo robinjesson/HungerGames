@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletEnemyBehaviour : MonoBehaviour
+public class BulletEnemyBehaviour : UiScript
 {
     public float speed = 1.0f;
 
@@ -12,12 +12,14 @@ public class BulletEnemyBehaviour : MonoBehaviour
     private float z;
     private DateTime creationTime;
     private Vector3 movementVector;
+  
     // Start is called before the first frame update
     void Start()
     {
         Vector3 target = Camera.main.transform.position;
         movementVector = (target - transform.position).normalized;
         creationTime = DateTime.Now;
+   
         
     }
 
@@ -30,6 +32,7 @@ public class BulletEnemyBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+     
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,6 +40,9 @@ public class BulletEnemyBehaviour : MonoBehaviour
         if (other.gameObject.name=="Main Camera")
         {
             Debug.Log("touché");
+            UiScript.DeleteLife();
         }
     }
+
+
 }

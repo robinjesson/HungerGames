@@ -413,7 +413,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 171313275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e61023e12bbbce4591c426f7cd50b78, type: 3}
+  m_Script: {fileID: 11500000, guid: 60d5285241c83cb4babb71ad5626301f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultText: Button

@@ -62,7 +62,7 @@ public class EnemyExplodeBehavior : MonoBehaviour
         piece.transform.localScale = new Vector3(parent.cubeExplosionSize, parent.cubeExplosionSize, parent.cubeExplosionSize);
 
         piece.AddComponent<Rigidbody>();
-        piece.GetComponent<Rigidbody>().mass = 1f;
+        piece.GetComponent<Rigidbody>().mass = 5f;
     }
 
     private void OnTriggerEnter(Collider other)

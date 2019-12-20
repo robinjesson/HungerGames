@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 930070798464833289}
   - component: {fileID: 645269017417739905}
   - component: {fileID: 8137733216466025389}
+  - component: {fileID: 3176457794388546406}
   m_Layer: 0
   m_Name: Ennemy
   m_TagString: Untagged
@@ -235,9 +236,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930070798464833294}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 930070799492034045}
   - {fileID: 930070798707221220}
@@ -250,7 +251,7 @@ Transform:
   - {fileID: 1753440208577924169}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &645269017417739905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +270,7 @@ MonoBehaviour:
   explosionForce: 120
   explosionRadius: 10
   explosionUpward: 10
+  rightArm: {fileID: 930070799900910963}
 --- !u!95 &8137733216466025389
 Animator:
   serializedVersion: 3
@@ -288,6 +290,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &3176457794388546406
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930070798464833294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.0734177
+  m_Height: 3.2005305
+  m_Direction: 1
+  m_Center: {x: -0.026301503, y: 1.2321846, z: -0.11402175}
 --- !u!1 &930070798707221221
 GameObject:
   m_ObjectHideFlags: 0

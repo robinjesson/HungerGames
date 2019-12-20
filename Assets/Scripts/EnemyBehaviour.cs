@@ -10,24 +10,36 @@ public class EnemyBehaviour : MonoBehaviour
     private DateTime lastMove;
     private double intervalMove;
     private Animator mAnim;
+    private Boolean isDead;
 
     public GameObject bulletPrefab;
     public float cubeExplosionSize = 0.1f;
     public int explosionForce = 120;
     public int explosionRadius = 10;
     public float explosionUpward = 10f;
+    public GameObject rightArm;
 
     void Start()
     {
-        this.intervalShoot = UnityEngine.Random.Range(3, 10);
+        this.intervalShoot = UnityEngine.Random.Range(1, 5);
         this.lastShoot = DateTime.Now;
         mAnim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
-        this.Shoot();
-        this.MovesToCam();
+
+        if (GameObject.Find("Vie") && !isDead)
+        {
+            this.Shoot();
+        }
+            
+        
+        if (Vector3.Distance(this.transform.position, Camera.main.transform.position) > 3)
+        {
+            this.MovesToCam();
+        }
+        else mAnim.Play("Idle");
         this.transform.LookAt(Camera.main.transform);
     }
 
@@ -37,11 +49,12 @@ public class EnemyBehaviour : MonoBehaviour
         {
             //mAnim.Play("Idle");
             RaiseArm();
-            var bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
+            var bullet = Instantiate(bulletPrefab, rightArm.transform.position, Quaternion.identity);
             this.lastShoot = DateTime.Now;
             DownArm();
         }
     }
+
 
     private IEnumerator RaiseArm()
     {
@@ -76,6 +89,8 @@ public class EnemyBehaviour : MonoBehaviour
     public void explodeChild(GameObject firstHit, Collider bullet)
     {
         mAnim.Play("Idle");
+        this.isDead = true;
+        Camera.main.gameObject.GetComponent<CameraBehaviour>().enemyKilled();
         EnemyExplodeBehavior[] cubes = gameObject.GetComponentsInChildren<EnemyExplodeBehavior>();
         foreach (EnemyExplodeBehavior cube in cubes)
         {

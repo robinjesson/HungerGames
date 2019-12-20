@@ -14,6 +14,7 @@ public class UiScript : MonoBehaviour
     public static int life;
 
     private DateTime lauchDeadLine;
+    private DateTime lauchWinLine;
 
     // Start is called before the first frame update
     void Start()
@@ -91,5 +92,31 @@ public class UiScript : MonoBehaviour
             {
                 SceneManager.LoadScene("Menu");
             }
+    }
+
+    public void showVictory()
+    {
+        foreach (Transform child in gameObject.transform)
+        {
+            if (child.name == "Vie")
+            {
+                child.gameObject.SetActive(false);
+            }
+            else if (child.name == "Victoire")
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+
+        if (this.lauchWinLine != null)
+            if (this.lauchWinLine.AddSeconds(3) <= DateTime.Now)
+            {
+                SceneManager.LoadScene("Menu");
+            }
+    }
+
+    public void initLaunchWInLine()
+    {
+        this.lauchWinLine = DateTime.Now;
     }
 }

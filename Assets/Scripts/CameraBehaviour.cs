@@ -12,9 +12,11 @@ public class CameraBehaviour : MonoBehaviour
     public int radius = 1;
 
     private GestureRecognizer gr;
+    private int enemyLeft;
 
     void Start()
     {
+        this.enemyLeft = nbEnemies;
         double angle = 2 * Math.PI / nbEnemies;
         for(int i = 0; i < nbEnemies; i++)
         {
@@ -42,13 +44,30 @@ public class CameraBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (enemyLeft <= 0)
+        {
+            foreach (Transform child in gameObject.transform)
+            {
+                if (child.name == "Canvas vie")
+                {
+                    child.gameObject.GetComponent<UiScript>().showVictory();
+                }
+            }
+        }
         if (Input.GetMouseButtonDown(0))
         {
             Instantiate(cameraBulletPrefab, this.transform.position, Quaternion.identity);
         }
     }
 
-
+    public void enemyKilled()
+    {
+        this.enemyLeft--;
+        if (enemyLeft <= 0)
+        {
+            GameObject.Find("Canvas vie").GetComponent<UiScript>().initLaunchWInLine();
+        }
+    }
 
 
 }

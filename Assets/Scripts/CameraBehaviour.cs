@@ -21,7 +21,7 @@ public class CameraBehaviour : MonoBehaviour
         for(int i = 0; i < nbEnemies; i++)
         {
             float x = (float) Math.Cos(i * angle);
-            float y = this.transform.position.y;
+            float y = this.transform.position.y-this.transform.position.y;
             float z = (float) Math.Sin(i * angle);
 
             Vector3 pos = new Vector3(x, y, z);

@@ -40,7 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
             this.MovesToCam();
         }
         else mAnim.Play("Idle");
-        this.transform.LookAt(Camera.main.transform);
+        this.transform.LookAt(new Vector3(Camera.main.transform.position.x,this.transform.position.y, Camera.main.transform.position.z));
     }
 
     void Shoot()

@@ -40,7 +40,7 @@ public class BulletEnemyBehaviour : UiScript
         if (other.gameObject.name=="Main Camera")
         {
             Debug.Log("touché");
-            UiScript.DeleteLife();
+            GameObject.Find("Canvas vie").GetComponent<UiScript>().DeleteLife();
         }
     }
 

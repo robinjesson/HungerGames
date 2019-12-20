@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UiScript : MonoBehaviour
 {
@@ -8,25 +10,33 @@ public class UiScript : MonoBehaviour
     public static GameObject life_bd;
     public static GameObject life_hg;
     public static GameObject life_hd;
+    private static bool isDeaD;
     public static int life;
+
+    private DateTime lauchDeadLine;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject.Find("Mort").SetActive(false);
         life_bd = GameObject.Find("Vie_bd");
         life_bg = GameObject.Find("Vie_bg");
         life_hd = GameObject.Find("Vie_hd");
         life_hg = GameObject.Find("Vie_hg");
         life = 4;
+        isDeaD = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isDeaD)
+        {
+            TMort();
+        }
     }
 
-    public static void DeleteLife()
+    public void DeleteLife()
     {
         life--;
         if(life == 3)
@@ -48,6 +58,10 @@ public class UiScript : MonoBehaviour
         {
             Destroy(life_hd);
             Debug.Log("test4");
+
+            this.lauchDeadLine = DateTime.Now;
+            isDeaD = true;
+
         }
         else
         {
@@ -55,5 +69,27 @@ public class UiScript : MonoBehaviour
             Debug.Log("mort, reset");
         }
 
+    }
+
+    private void TMort()
+    {
+        Debug.Log(GameObject.Find("Mort"));
+        foreach (Transform child in gameObject.transform)
+        {
+            if(child.name == "Vie")
+            {
+                child.gameObject.SetActive(false);
+            }
+            else if (child.name == "Mort")
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
+
+        if(this.lauchDeadLine!=null)
+            if(this.lauchDeadLine.AddSeconds(3)<=DateTime.Now)
+            {
+                SceneManager.LoadScene("Menu");
+            }
     }
 }

@@ -24,7 +24,8 @@ public class CameraBehaviour : MonoBehaviour
 
             Vector3 pos = new Vector3(x, y, z);
             pos *= radius;
-            Instantiate(enemyPrefab, pos, Quaternion.identity);
+            var e = Instantiate(enemyPrefab, pos, Quaternion.identity);
+            e.transform.LookAt(this.transform.position);
             Debug.Log(pos);
         }
 

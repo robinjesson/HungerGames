@@ -8,20 +8,21 @@ public class CameraBehaviour : MonoBehaviour
 {
     public GameObject cameraBulletPrefab;
     public GameObject enemyPrefab;
-    public int nbEnemies = 1;
     public int radius = 1;
 
+    private int nbEnemies = 1;
     private GestureRecognizer gr;
     private int enemyLeft;
 
     void Start()
     {
+        this.nbEnemies = MenuNumbersEnemies.nbEnemies;
         this.enemyLeft = nbEnemies;
         double angle = 2 * Math.PI / nbEnemies;
         for(int i = 0; i < nbEnemies; i++)
         {
             float x = (float) Math.Cos(i * angle);
-            float y = this.transform.position.y-this.transform.position.y;
+            float y = -0.5f;
             float z = (float) Math.Sin(i * angle);
 
             Vector3 pos = new Vector3(x, y, z);
@@ -39,7 +40,7 @@ public class CameraBehaviour : MonoBehaviour
 
     private void Gr_Tapped(TappedEventArgs obj)
     {
-        Instantiate(cameraBulletPrefab, this.transform.position, Quaternion.identity);
+        var bullet = Instantiate(cameraBulletPrefab, this.transform.position, this.transform.rotation);
     }
 
     private void Update()
@@ -56,7 +57,7 @@ public class CameraBehaviour : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(cameraBulletPrefab, this.transform.position, Quaternion.identity);
+            Instantiate(cameraBulletPrefab, this.transform.position, this.transform.rotation);
         }
     }
 

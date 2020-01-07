@@ -19,8 +19,8 @@ public class BulletEnemyBehaviour : UiScript
         Vector3 target = Camera.main.transform.position;
         movementVector = (target - transform.position).normalized;
         creationTime = DateTime.Now;
-   
-        
+        this.transform.LookAt(Camera.main.transform);
+
     }
 
     // Update is called once per frame

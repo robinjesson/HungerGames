@@ -33,7 +33,7 @@ public class UiScript : MonoBehaviour
     {
         if (isDeaD)
         {
-            TMort();
+            activeCanvasWonDead();
         }
     }
 
@@ -72,7 +72,7 @@ public class UiScript : MonoBehaviour
 
     }
 
-    private void TMort()
+    private void activeCanvasWonDead()
     {
         Debug.Log(GameObject.Find("Mort"));
         foreach (Transform child in gameObject.transform)

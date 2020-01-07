@@ -22,6 +22,19 @@ public class ButtonPlayBehaviour : MonoBehaviour, IMixedRealityInputHandler
     {
         this.transform.localScale = this.defaultScale;
         this.tmp.text = this.defaultText;
+        switch (this.defaultText)
+        {
+            case "Moyen":
+                MenuNumbersEnemies.nbEnemies = 2;
+                break;
+            case "Difficile":
+                MenuNumbersEnemies.nbEnemies = 3;
+                break;
+            default:
+                MenuNumbersEnemies.nbEnemies = 1;
+                break;
+        }
+        
         Application.LoadLevel("SampleScene");
         Debug.Log("onup");
     }

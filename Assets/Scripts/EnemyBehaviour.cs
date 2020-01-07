@@ -49,7 +49,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             //mAnim.Play("Idle");
             RaiseArm();
-            var bullet = Instantiate(bulletPrefab, rightArm.transform.position, Quaternion.identity);
+            var bullet = Instantiate(bulletPrefab, rightArm.transform.position, this.transform.rotation);
             this.lastShoot = DateTime.Now;
             DownArm();
         }

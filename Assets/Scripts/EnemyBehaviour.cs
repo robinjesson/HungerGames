@@ -23,13 +23,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         this.intervalShoot = UnityEngine.Random.Range(1, 5);
         this.lastShoot = DateTime.Now;
-        mAnim = gameObject.GetComponent<Animator>();
+        this.mAnim = this.gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
 
-        if (GameObject.Find("Vie") && !isDead)
+        if (GameObject.Find("Vie") && !this.isDead)
         {
             this.Shoot();
         }
@@ -39,35 +39,40 @@ public class EnemyBehaviour : MonoBehaviour
         {
             this.MovesToCam();
         }
-        else mAnim.Play("Idle");
+        else this.mAnim.Play("Idle");
         this.transform.LookAt(new Vector3(Camera.main.transform.position.x,this.transform.position.y, Camera.main.transform.position.z));
     }
 
+    /// <summary>
+    /// Permet de tirer à un intervalle de temps régulier.
+    /// </summary>
     void Shoot()
     {
         if (DateTime.Now >= lastShoot.AddSeconds(this.intervalShoot))
         {
             //mAnim.Play("Idle");
-            RaiseArm();
+            this.RaiseArm();
             var bullet = Instantiate(bulletPrefab, rightArm.transform.position, this.transform.rotation);
             this.lastShoot = DateTime.Now;
-            DownArm();
+            this.DownArm();
         }
     }
 
-
     private IEnumerator RaiseArm()
     {
-        mAnim.SetTrigger("RaiseRightArm");
+        this.mAnim.SetTrigger("RaiseRightArm");
         yield return new WaitForSeconds(mAnim.GetCurrentAnimatorStateInfo(0).length + mAnim.GetCurrentAnimatorStateInfo(0).normalizedTime);
     }
 
     private IEnumerator DownArm()
     {
-        mAnim.SetTrigger("DownRightArm");
+        this.mAnim.SetTrigger("DownRightArm");
         yield return new WaitForSeconds(mAnim.GetCurrentAnimatorStateInfo(0).length + mAnim.GetCurrentAnimatorStateInfo(0).normalizedTime);
     }
 
+    /// <summary>
+    /// Avance l'ennnemie vers la caméra.
+    /// </summary>
     void MovesToCam()
     {
         Vector3 camPos = Camera.main.transform.position;
@@ -86,7 +91,12 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    public void explodeChild(GameObject firstHit, Collider bullet)
+    /// <summary>
+    /// Lance l'explosion lorsque un objet touche l'ennemi.
+    /// </summary>
+    /// <param name="firstHit"></param>
+    /// <param name="bullet"></param>
+    public void ExplodeChild(GameObject firstHit, Collider bullet)
     {
         mAnim.Play("Idle");
         this.isDead = true;
@@ -94,7 +104,7 @@ public class EnemyBehaviour : MonoBehaviour
         EnemyExplodeBehavior[] cubes = gameObject.GetComponentsInChildren<EnemyExplodeBehavior>();
         foreach (EnemyExplodeBehavior cube in cubes)
         {
-            if (firstHit.name != cube.name) cube.explode(bullet);
+            if (firstHit.name != cube.name) cube.Explode(bullet);
         }
     }
 }

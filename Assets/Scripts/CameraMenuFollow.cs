@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Comportement permettant que le menu d'accueil reste orienté et face à la caméra.
+/// </summary>
 public class CameraMenuFollow : MonoBehaviour
 {
 
@@ -14,22 +17,23 @@ public class CameraMenuFollow : MonoBehaviour
     private Vector3 pos2;
     private Quaternion rot1;
     private Quaternion rot2;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
-        pos1 = this.transform.position;
-        rot1 = this.transform.rotation;
-        menuRotator.transform.position = this.transform.position;
-        easyGO.transform.position = new Vector3(pos1.x - 0.45f, pos1.y, pos1.z + 1);
-        mediumGO.transform.position = new Vector3(pos1.x, pos1.y, pos1.z + 1);
-        hardGO.transform.position = new Vector3(pos1.x + 0.45f, pos1.y, pos1.z + 1);
+        this.pos1 = this.transform.position;
+        this.rot1 = this.transform.rotation;
+        this.menuRotator.transform.position = this.transform.position;
+        this.easyGO.transform.position = new Vector3(pos1.x - 0.45f, pos1.y, pos1.z + 1);
+        this.mediumGO.transform.position = new Vector3(pos1.x, pos1.y, pos1.z + 1);
+        this.hardGO.transform.position = new Vector3(pos1.x + 0.45f, pos1.y, pos1.z + 1);
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Replace le menu face à la caméra.
+    /// </summary>
     void Update()
     {
-        menuRotator.transform.position = this.transform.position;
+        this.menuRotator.transform.position = this.transform.position;
         
  
         if (NeedRotation())
@@ -40,7 +44,10 @@ public class CameraMenuFollow : MonoBehaviour
             
     }
 
-
+    /// <summary>
+    /// Pour savoir si une rotation des boutons est nécessaire lorsque la caméra est trop éloignée.
+    /// </summary>
+    /// <returns>boolean</returns>
     private bool NeedRotation()
     {
         rot2 = this.transform.rotation;

@@ -13,7 +13,11 @@ public class BulletEnemyBehaviour : UiScript
     private DateTime creationTime;
     private Vector3 movementVector;
   
-    // Start is called before the first frame update
+    /// <summary>
+    /// Cible la caméra.
+    /// Initialise la direction de déplacement de la balle.
+    /// Initialise la date de création de la balle.
+    /// </summary>
     void Start()
     {
         Vector3 target = Camera.main.transform.position;
@@ -23,7 +27,10 @@ public class BulletEnemyBehaviour : UiScript
 
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Détruit l'objet après 20 secondes.
+    /// Avance l'objet en ligne droite selon la direction initalisée.
+    /// </summary>
     void Update()
     {
         transform.position += movementVector * Time.deltaTime * speed;
@@ -35,6 +42,10 @@ public class BulletEnemyBehaviour : UiScript
      
     }
 
+    /// <summary>
+    /// Supprime une vie du joueur quand la balle heurte le joueur.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name=="Main Camera")

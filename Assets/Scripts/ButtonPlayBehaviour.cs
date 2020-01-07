@@ -7,10 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class ButtonPlayBehaviour : MonoBehaviour, IMixedRealityInputHandler
 {
+    public string defaultText = "Button";
+
+    private Vector3 defaultScale;
     private TextMeshPro tmp;
 
-    public string defaultText = "Button";
-    private Vector3 defaultScale;
+    /// <summary>
+    /// Réduit l'épaisseur du bouton pendant le clique.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnInputDown(InputEventData eventData)
     {
         this.transform.localScale = new Vector3(this.defaultScale.x, this.defaultScale.y, 0.01f);
@@ -18,6 +23,11 @@ public class ButtonPlayBehaviour : MonoBehaviour, IMixedRealityInputHandler
         Debug.Log("ondown");
     }
 
+    /// <summary>
+    /// Lorsque le clique est relaché, le nombre d'ennemies est déterminé avec la difficulté choisie,
+    /// puis lance le jeu.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnInputUp(InputEventData eventData)
     {
         this.transform.localScale = this.defaultScale;
@@ -35,21 +45,17 @@ public class ButtonPlayBehaviour : MonoBehaviour, IMixedRealityInputHandler
                 break;
         }
         
-        Application.LoadLevel("SampleScene");
+        SceneManager.LoadScene("SampleScene");
         Debug.Log("onup");
     }
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Donne le texte choisi au bouton.
+    /// </summary>
     void Start()
     {
         this.defaultScale = this.transform.localScale;
         this.tmp = this.transform.GetChild(0).GetComponent<TextMeshPro>();
         this.tmp.text = this.defaultText;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

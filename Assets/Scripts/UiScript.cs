@@ -15,6 +15,8 @@ public class UiScript : MonoBehaviour
 
     private DateTime lauchDeadLine;
     private DateTime lauchWinLine;
+    private bool isVictoryCanvasActive = false;
+    private bool isDeathCanvasActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +35,7 @@ public class UiScript : MonoBehaviour
     {
         if (isDeaD)
         {
-            activeCanvasWonDead();
+            showDead();
         }
     }
 
@@ -72,47 +74,61 @@ public class UiScript : MonoBehaviour
 
     }
 
-    private void activeCanvasWonDead()
+    private void showDead()
     {
-        Debug.Log(GameObject.Find("Mort"));
-        foreach (Transform child in gameObject.transform)
+        if (!this.isVictoryCanvasActive)
         {
-            if(child.name == "Vie")
+            Debug.Log(GameObject.Find("Mort"));
+            foreach (Transform child in gameObject.transform)
             {
-                child.gameObject.SetActive(false);
+                if (child.name == "Vie")
+                {
+                    child.gameObject.SetActive(false);
+                }
+                else if (child.name == "Mort")
+                {
+                    child.gameObject.SetActive(true);
+                }
             }
-            else if (child.name == "Mort")
-            {
-                child.gameObject.SetActive(true);
-            }
-        }
 
-        if(this.lauchDeadLine!=null)
-            if(this.lauchDeadLine.AddSeconds(3)<=DateTime.Now)
+            if (this.lauchDeadLine != null)
             {
-                SceneManager.LoadScene("Menu");
+                if (this.lauchDeadLine.AddSeconds(3) <= DateTime.Now)
+                {
+                    SceneManager.LoadScene("Menu");
+                }
             }
+
+            this.isDeathCanvasActive = true;
+        }
     }
 
     public void showVictory()
     {
-        foreach (Transform child in gameObject.transform)
+        if (!this.isDeathCanvasActive)
         {
-            if (child.name == "Vie")
+            foreach (Transform child in gameObject.transform)
             {
-                child.gameObject.SetActive(false);
+                if (child.name == "Vie")
+                {
+                    child.gameObject.SetActive(false);
+                }
+                else if (child.name == "Victoire")
+                {
+                    child.gameObject.SetActive(true);
+                }
             }
-            else if (child.name == "Victoire")
-            {
-                child.gameObject.SetActive(true);
-            }
-        }
 
-        if (this.lauchWinLine != null)
-            if (this.lauchWinLine.AddSeconds(3) <= DateTime.Now)
+            if (this.lauchWinLine != null)
             {
-                SceneManager.LoadScene("Menu");
+                if (this.lauchWinLine.AddSeconds(3) <= DateTime.Now)
+                {
+                    SceneManager.LoadScene("Menu");
+                }
             }
+
+            this.isVictoryCanvasActive = true;
+        }
     }
 
     public void initLaunchWInLine()

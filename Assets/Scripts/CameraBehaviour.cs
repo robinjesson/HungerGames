@@ -14,6 +14,10 @@ public class CameraBehaviour : MonoBehaviour
     private GestureRecognizer gr;
     private int enemyLeft;
 
+    /// <summary>
+    /// Débute la reconnaissance du air tap.
+    /// Crée les ennemie en cercle autour du joueur.
+    /// </summary>
     void Start()
     {
         this.nbEnemies = MenuNumbersEnemies.nbEnemies;
@@ -32,20 +36,27 @@ public class CameraBehaviour : MonoBehaviour
             Debug.Log(pos);
         }
 
-        gr = new GestureRecognizer();
-        gr.Tapped += this.Gr_Tapped;
-        gr.SetRecognizableGestures(GestureSettings.Tap);
-        gr.StartCapturingGestures();
+        this.gr = new GestureRecognizer();
+        this.gr.Tapped += this.Gr_Tapped;
+        this.gr.SetRecognizableGestures(GestureSettings.Tap);
+        this.gr.StartCapturingGestures();
     }
 
+    /// <summary>
+    /// Instancie une balle de la camera lorsque le air tap est détecté.
+    /// </summary>
+    /// <param name="obj"></param>
     private void Gr_Tapped(TappedEventArgs obj)
     {
         var bullet = Instantiate(cameraBulletPrefab, this.transform.position, this.transform.rotation);
     }
 
+    /// <summary>
+    /// Detecte et lance le message de victoire lorsqu'il n'y a plus d'ennemie.
+    /// </summary>
     private void Update()
     {
-        if (enemyLeft <= 0)
+        if (this.enemyLeft <= 0)
         {
             foreach (Transform child in gameObject.transform)
             {
@@ -61,10 +72,13 @@ public class CameraBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Décrémente le nombre d'ennemies restants.
+    /// </summary>
     public void enemyKilled()
     {
         this.enemyLeft--;
-        if (enemyLeft <= 0)
+        if (this.enemyLeft <= 0)
         {
             GameObject.Find("Canvas vie").GetComponent<UiScript>().initLaunchWInLine();
         }
